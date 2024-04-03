@@ -1,4 +1,4 @@
-# CarD-Few: Carcinogen Context Detection by Few-Shot Learning
+# CarD-Few: Carcinogenic Context Detection by Few-Shot Learning
 
 CarD-Few is a Python package developed to identify sentences in scientific literature that discuss carcinogens, leveraging the power of few-shot learning with state-of-the-art NLP models.
 
