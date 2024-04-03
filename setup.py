@@ -11,6 +11,7 @@ setup(
     url='https://github.com/yourusername/CarD-Few',
     packages=find_packages(),
     install_requires=[
+        'torch',
         'transformers>=4.0.0',
         'datasets>=1.0.0',
         'pandas',
