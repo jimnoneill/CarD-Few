@@ -13,7 +13,7 @@ class TestCarDFewClassifier(unittest.TestCase):
     def setUpClass(cls):
         #self.dataset_path = 'data/fewshot_trainset3.tsv'
         #self.model = CarDFewClassifier(model_id='model')
-        cls.dataset_path = 'data/fewshot_trainset3.tsv'
+        dataset_path = 'data/fewshot_trainset3.tsv'
         #cls.model = CarDFewClassifier()
         model_save_path = 'data/trained_model'
         train_model(dataset_path, model_save_path)
