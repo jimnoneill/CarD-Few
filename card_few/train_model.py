@@ -9,7 +9,7 @@ def train_model(dataset_path, model_save_path):
     train_ds, eval_ds = prepare_dataset(dataset)   # Make sure this function is defined or imported correctly
 
     # Initialize the SetFitModel
-    model = SetFitModel.from_pretrained('thenlper/gte-large',average="micro")
+    model = SetFitModel.from_pretrained('thenlper/gte-large')#,average="micro")
 
     # Initialize the trainer
     trainer = SetFitTrainer(
