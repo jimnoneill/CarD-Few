@@ -51,6 +51,10 @@ python -m card_few.run path/to/your/dataset.tsv
 ```
 This will output the classifications directly to your terminal.
 
+# Validation
+Model was trained 80\20 split on 4 contextual categories. 1. Carcinogen implication. 2. Negative conclusion of carcinogenicty. 3. Antineoplasticity implication. 4. Unknown\other classification.
+F1 0.926
+
 ## Contributing
 We welcome contributions to CarD-Few! Whether it's adding new features, improving documentation, or reporting issues, please feel free to reach out.
 
