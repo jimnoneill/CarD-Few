@@ -1,5 +1,6 @@
 from transformers import AutoModelForSequenceClassification, AutoTokenizer
 from setfit import SetFitModel, SetFitTrainer
+import torch
 
 class CarDFewClassifier:
     def __init__(self, model_name='thenlper/gte-large'):
