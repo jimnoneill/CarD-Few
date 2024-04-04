@@ -1,6 +1,6 @@
 import argparse
 from .model import CarDFewClassifier
-from .data_processing import load_user_dataset
+from card_few.data_processing import load_tsv_dataset
 #Usage: python -m card_few.run path/to/your/dataset.csv
 
 def main():
@@ -12,7 +12,7 @@ def main():
     args = parser.parse_args()
 
     # Load the dataset
-    user_dataset = load_user_dataset(args.dataset_path)
+    user_dataset = load_tsv_dataset(args.dataset_path)
 
     # Initialize the classifier
     classifier = CarDFewClassifier()

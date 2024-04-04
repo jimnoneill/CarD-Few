@@ -31,18 +31,25 @@ def load_dict_dataset(data_dict):
     dataset = Dataset.from_pandas(df)
     return dataset
 
-def prepare_dataset(dataset, tokenizer, max_length=512):
+def prepare_dataset(dataset, tokenizer, max_length=512, split_ratio=0.8):
     """
-    Tokenize and format the dataset for the model.
+    Tokenize, format, and split the dataset for the model.
     :param dataset: A `Dataset` object to prepare.
     :param tokenizer: The tokenizer to use for encoding the texts.
     :param max_length: The maximum sequence length for the model.
-    :return: The pre-processed and tokenized dataset.
+    :param split_ratio: The ratio to split the dataset into training and evaluation sets.
+    :return: A tuple containing the pre-processed and tokenized training and evaluation datasets.
     """
-    # Define the tokenization function
+    # Tokenize the dataset
     def tokenize_function(examples):
         return tokenizer(examples["sentence"], padding="max_length", truncation=True, max_length=max_length)
 
     # Apply tokenization
-    dataset = dataset.map(tokenize_function, batched=True)
-    return dataset
+    tokenized_dataset = dataset.map(tokenize_function, batched=True)
+
+    # Split the dataset into training and evaluation sets
+    train_size = int(len(tokenized_dataset) * split_ratio)
+    train_dataset = tokenized_dataset.select(range(train_size))
+    eval_dataset = tokenized_dataset.select(range(train_size, len(tokenized_dataset)))
+
+    return train_dataset, eval_dataset

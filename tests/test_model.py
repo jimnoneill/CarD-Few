@@ -1,15 +1,24 @@
 import unittest
 from card_few.data_processing import load_tsv_dataset, prepare_dataset
 from card_few.model import CarDFewClassifier
-
+card_few
 import unittest
 from datasets import load_dataset
+import pytest
+from card_few.train_model import train_model
+from setfit import SetFitModel
 
 class TestCarDFewClassifier(unittest.TestCase):
-    def setUp(self):
-        self.dataset_path = 'path/to/your/dataset'  # change to your dataset path
-        self.model = CarDFewClassifier(model_id='your-pretrained-model')  # change to your model ID
-
+    #def setUp(self):
+    @classmethod
+    def setUpClass(cls):
+        #self.dataset_path = 'data/fewshot_trainset3.tsv'
+        #self.model = CarDFewClassifier(model_id='model')
+        cls.dataset_path = 'data/fewshot_trainset3.tsv'
+        #cls.model = CarDFewClassifier()
+        model_save_path = 'data/trained_model'
+        train_model(dataset_path, model_save_path)
+        cls.model = SetFitModel.from_pretrained(model_save_path)
     def test_prediction(self):
         # Load the dataset
         dataset = load_dataset(self.dataset_path)
