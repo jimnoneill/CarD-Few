@@ -31,7 +31,7 @@ def load_dict_dataset(data_dict):
     dataset = Dataset.from_pandas(df)
     return dataset
 
-def prepare_dataset(dataset, tokenizer, max_length=512, split_ratio=0.8):
+def prepare_dataset(dataset):
     """
     Tokenize, format, and split the dataset for the model.
     :param dataset: A `Dataset` object to prepare.
@@ -41,15 +41,25 @@ def prepare_dataset(dataset, tokenizer, max_length=512, split_ratio=0.8):
     :return: A tuple containing the pre-processed and tokenized training and evaluation datasets.
     """
     # Tokenize the dataset
-    def tokenize_function(examples):
-        return tokenizer(examples["sentence"], padding="max_length", truncation=True, max_length=max_length)
+    def dataset_maker(input_data):
 
-    # Apply tokenization
-    tokenized_dataset = dataset.map(tokenize_function, batched=True)
+        idx_list, sentence_list, label_list = [], [], []
+        for i, (k, v) in enumerate(input_data.items()):
+            idx_list.append(i)
+            sentence_list.append(k)
+            label_list.append(int(v))
 
-    # Split the dataset into training and evaluation sets
-    train_size = int(len(tokenized_dataset) * split_ratio)
-    train_dataset = tokenized_dataset.select(range(train_size))
-    eval_dataset = tokenized_dataset.select(range(train_size, len(tokenized_dataset)))
+        data_dict = {'idx': idx_list, 'sentence': sentence_list, 'label': label_list}
 
-    return train_dataset, eval_dataset
+        custom_dataset = Dataset.from_dict(data_dict)
+        return custom_dataset
+
+
+    ds_dataset = dataset_maker(dataset)
+
+
+    ds_shuffle = ds_dataset.shuffle(seed=42)
+
+    train_dataset = ds_shuffle.select([i for i in range(int(len(ds_shuffle)*.8))])
+    eval_ds = ds_shuffle.select([i for i in range(len(ds_shuffle)) if i >= int(len(ds_shuffle)*.2)])
+    return train_dataset, eval_ds
