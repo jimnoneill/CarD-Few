@@ -23,18 +23,7 @@ def load_tsv_dataset(file_path):
                 dataset[sent] = label
         # Convert the DataFrame into a Hugging Face Dataset
     return dataset
-carc_training = {}
-with open('/home/joneill/vaults/jmind/nlp/CarDBERT/training/fewshot_labels/fewshot_trainset3.tsv','r') as fin:
-    for line in fin:
-        line = line.rstrip("\n")
-        label = line[-1]
-        sent = line[:-1].rstrip()
-        if label in ["0","1","2","3","4"]:
-            if label == "3":
-                label = "-1"
-            if label == "4":
-                label = "-2"
-            carc_training[sent] = label
+
 def load_dict_dataset(data_dict):
     """
     Load a dataset from a dictionary with sentences as keys and labels as values.
