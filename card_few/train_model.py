@@ -1,11 +1,11 @@
 from datasets import load_dataset
 from setfit import SetFitModel, SetFitTrainer
 from sentence_transformers.losses import CosineSimilarityLoss
-from card_few.data_processing import prepare_dataset  # Make sure this is the correct import
+from card_few.data_processing import prepare_dataset, load_tsv_dataset  # Make sure this is the correct import
 
 def train_model(dataset_path, model_save_path):
     # Load and prepare the dataset
-    dataset = load_dataset_from_tsv(dataset_path)  # Make sure this function is defined or imported correctly
+    dataset = load_tsv_dataset(dataset_path)  # Make sure this function is defined or imported correctly
     train_ds, eval_ds = prepare_dataset(dataset)   # Make sure this function is defined or imported correctly
 
     # Initialize the SetFitModel
