@@ -1,7 +1,6 @@
 import unittest
 from card_few.data_processing import load_tsv_dataset, prepare_dataset
 from card_few.model import CarDFewClassifier
-card_few
 import unittest
 from datasets import load_dataset
 import pytest
