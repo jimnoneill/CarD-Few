@@ -1,8 +1,4 @@
-from transformers import AutoModelForSequenceClassification, AutoTokenizer
 from setfit import SetFitModel, SetFitTrainer
-import torch
-
-from setfit import SetFitModel
 
 class CarDFewClassifier:
     def __init__(self, model_id):

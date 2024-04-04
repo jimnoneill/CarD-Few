@@ -3,7 +3,7 @@ from setuptools import setup, find_packages
 setup(
     name='CarD-Few',
     version='0.1.0',
-    author='Your Name',
+    author='Jamey ONeill',
     author_email='joneilliii@sdsu.ed',
     description='CarD-Few: Context classifier for Carcinogen Detection by Few-Shot Learning',
     long_description=open('README.md').read(),

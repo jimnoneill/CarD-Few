@@ -2,7 +2,6 @@ import unittest
 from card_few.data_processing import load_tsv_dataset, prepare_dataset
 from card_few.model import CarDFewClassifier
 import unittest
-from datasets import load_dataset
 import pytest
 from card_few.train_model import train_model
 from setfit import SetFitModel

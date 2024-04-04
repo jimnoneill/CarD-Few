@@ -1,6 +1,5 @@
 
 import unicodedata
-import re
 def remove_quotes(text):
     if text.startswith("'") and text.endswith("'"):
         return text[1:-1]
